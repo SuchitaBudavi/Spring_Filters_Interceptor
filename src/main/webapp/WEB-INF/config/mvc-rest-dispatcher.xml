@@ -12,7 +12,27 @@
         http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
 	<context:component-scan base-package="com.suchi" />
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:annotation-driven />
+	<context:annotation-config />
 
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>	
+			<mvc:exclude-mapping path="/com/**gin**"/>				
+			<bean class="com.suchi.config.HandlerInterceptor"/>
+		</mvc:interceptor>				
+	</mvc:interceptors>
+	
+	<bean id="messageSource"
+        class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basenames">
+        	<list>
+        		<value>english</value>
+        	</list>
+        </property>                         
+    </bean>
+	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix">
 			<value>/WEB-INF/views/</value>
@@ -21,11 +41,6 @@
 			<value>.jsp</value>
 		</property>
 	</bean>
-
-
-	<mvc:resources mapping="/resources/**" location="/resources/" />
-	<mvc:annotation-driven />
-	<context:annotation-config />
 	
 	<!-- <task:annotation-driven executor="executor" />
 	<task:executor id="executor" pool-size="7"/> -->

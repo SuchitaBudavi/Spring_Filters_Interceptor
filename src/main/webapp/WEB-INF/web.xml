@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  
+  <filter>
+		<description>Request read Filter</description>
+		<display-name>Request read Filter</display-name>
+		<filter-name>requestHandling</filter-name>
+		<filter-class>com.suchi.config.RequestHandlingFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>requestHandling</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+  <filter>
+		<description>Error Handling Filter</description>
+		<display-name>Error Handling Filter</display-name>
+		<filter-name>errorHandling</filter-name>
+		<filter-class>com.suchi.config.ErrorHandlingFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>errorHandling</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>		
+	
   <servlet>
 		<servlet-name>spring-web</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -15,4 +37,23 @@
 		<servlet-name>spring-web</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>	
+	
+	<servlet>
+		<servlet-name>jersey-serlvet</servlet-name>
+		<servlet-class>
+			com.sun.jersey.spi.spring.container.servlet.SpringServlet
+		</servlet-class>
+		<init-param>
+			<param-name>
+                                 com.sun.jersey.config.property.packages
+                        </param-name>
+			<param-value>com.mkyong.rest</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>jersey-serlvet</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
 </web-app>

@@ -7,6 +7,13 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>spring Maven Webapp</name>
   <url>http://maven.apache.org</url>
+  
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>    
+   <maven.compiler.source>1.8</maven.compiler.source>
+   <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+  
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -20,7 +27,12 @@
 	    <artifactId>spring-webmvc</artifactId>
 	    <version>4.3.13.RELEASE</version>
 	</dependency>
-    
+    <dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>servlet-api</artifactId>
+	    <version>2.5</version>
+	    <scope>provided</scope>
+	</dependency>
   </dependencies>
   <build>
     <finalName>spring</finalName>

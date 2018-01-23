@@ -25,14 +25,14 @@ public class LoginController {
 		System.out.println("inside controller " + Thread.currentThread().getName());
 		//System.out.println("inside controller: return of async call: "+asyncCallReturn.get());
 		
-		CompletableFuture.supplyAsync(this::sendMsg);
+		/*CompletableFuture.supplyAsync(this::sendMsg);
 		CompletableFuture<String> receiver = CompletableFuture.supplyAsync(this::sendMsg2);
 		
-		receiver.thenApplyAsync(this::capitaliseMsg).thenAcceptAsync(this::receiveMsg);
-		
+		receiver.thenApplyAsync(this::capitaliseMsg).thenAcceptAsync(this::receiveMsg);*/
+		helper.loadProperties();
 		System.out.println("End of Controller");
 	}
-	
+		
 	public String sendMsg(){
 		System.out.println("Sending message "+Thread.currentThread().getName());
 		try {
